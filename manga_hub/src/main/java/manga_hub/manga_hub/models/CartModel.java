@@ -33,7 +33,7 @@ public class CartModel {
     private UserModel usuario;
 
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL)
-    @JsonIgnore // Adicione esta anotação para evitar referências circulares
+    @JsonIgnore
     private List<CartItemModel> itens;
 
     private double total;
@@ -44,7 +44,7 @@ public class CartModel {
             "id=" + id +
             ", total=" + total +
             ", usuario=" + usuario +
-            ", itens=" + "itens (size: " + (itens != null ? itens.size() : 0) + ")" + // Evita a impressão completa dos itens
+            ", itens=" + "itens (size: " + (itens != null ? itens.size() : 0) + ")" + 
             '}';
     }
 
