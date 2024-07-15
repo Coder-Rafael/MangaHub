@@ -42,7 +42,7 @@ public class AuthenticationController {
         return (ResponseEntity) ResponseEntity.ok(new LoginTokenDTO(token));
     }
 
-    // localhost:8080/auth/register
+    // https://mangahub-production.up.railway.app/auth/register
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserRegDTO userDTOreg) {
         if (this.service.loadUserByUsername(userDTOreg.login()) != null)
