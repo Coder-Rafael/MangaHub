@@ -18,7 +18,7 @@ function cadastrar() {
         telefone: telefone
     };
 
-    fetch("http://localhost:8080/auth/register", {
+    fetch("https://mangahub-production.up.railway.app/auth/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

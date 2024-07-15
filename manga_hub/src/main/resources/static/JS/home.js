@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       actFigure: "Action Figure",
     }
     
-      fetch("http://localhost:8080/home/")
+      fetch("https://mangahub-production.up.railway.app/home/")
         .then(response => response.json())
         .then(data => {
             productsLast = data;
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Erro na requisição para últimos produtos:', error));
   
-      fetch(`http://localhost:8080/home/${tipo.manga}`)
+      fetch(`https://mangahub-production.up.railway.app/home/${tipo.manga}`)
         .then(response => response.json())
         .then(data => {
             productsMangas = data;
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Erro na requisição para mangás:', error));
   
-      fetch(`http://localhost:8080/home/${tipo.lightNovel}`)
+      fetch(`https://mangahub-production.up.railway.app/${tipo.lightNovel}`)
         .then(response => response.json())
         .then(data => {
             productsLightNovels = data;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Erro na requisição para light novels:', error));
   
-      fetch(`http://localhost:8080/home/${tipo.actFigure}`)
+      fetch(`https://mangahub-production.up.railway.app/home/${tipo.actFigure}`)
   
         .then(response => response.json())
         .then(data => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function searchProductsHighlights(search) {
         const destaque = search.toUpperCase();
         try {
-            const response = await fetch(`http://localhost:8080/product/search/${destaque}?page=${currentPage}`);
+            const response = await fetch(`https://mangahub-production.up.railway.app/product/search/${destaque}?page=${currentPage}`);
             if (!response.ok) {
                 throw new Error('Erro ao obter dados da API');
             }
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function openProductModal(productId) {
       try {
           // Faça a requisição ao servidor para obter os detalhes do produto
-          const response = await fetch(`http://localhost:8080/product/${productId}`);
+          const response = await fetch(`https://mangahub-production.up.railway.app/product/${productId}`);
   
           if (!response.ok) {
               throw new Error('Erro ao obter detalhes do produto');
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function adicionarProdutoAoCarrinho(productId) {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:8080/cart/', {
+            const response = await fetch('https://mangahub-production.up.railway.app/cart/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       try {
           // Realiza um fetch para obter os itens do carrinho
-          const response = await fetch('http://localhost:8080/cart/', {
+          const response = await fetch('https://mangahub-production.up.railway.app/cart/', {
               method: 'GET',
               headers: {
                   "Authorization": `Bearer ${token}`
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('token');
       
           try {
-              const response = await fetch(`http://localhost:8080/cart/${itemId}`, {
+              const response = await fetch(`https://mangahub-production.up.railway.app/cart/${itemId}`, {
                   method: 'DELETE',
                   headers: {
                       'Authorization': `Bearer ${token}`
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   console.log("aaaaa" + destaqueSection);
   try {
-      const response = await fetch(`http://localhost:8080/product/search/${destaqueSection}?page=${currentPage}`);
+      const response = await fetch(`https://mangahub-production.up.railway.app/product/search/${destaqueSection}?page=${currentPage}`);
       if (!response.ok) {
           throw new Error('Erro ao obter dados da API');
       }
