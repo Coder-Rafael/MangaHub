@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import manga_hub.manga_hub.Security.SecurityFilter;
 
 
@@ -22,11 +23,12 @@ public class SecurityConfig {
     
    @Autowired
    SecurityFilter securityFilter;
-   
+    
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return httpSecurity
-        .csrf(csfr -> csfr.disable()) 
+        .csrf(csfr -> csfr.disable())
+    
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(HttpMethod.GET, "/**").permitAll()
@@ -38,7 +40,12 @@ public class SecurityConfig {
             .anyRequest().authenticated()
         )   .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
         .build();  
-    } 
+    }  
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
