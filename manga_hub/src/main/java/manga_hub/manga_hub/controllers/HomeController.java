@@ -15,7 +15,7 @@ import manga_hub.manga_hub.Services.HomeService;
 
 @RestController
 @RequestMapping("/home")
-@CrossOrigin(origins = "https://mangahub.up.railway.app")
+@CrossOrigin(origins = "*")
 public class HomeController {
 
     @Autowired
