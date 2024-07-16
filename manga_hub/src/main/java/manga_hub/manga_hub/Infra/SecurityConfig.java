@@ -1,7 +1,5 @@
 package manga_hub.manga_hub.Infra;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,17 +24,10 @@ public class SecurityConfig {
    @Autowired
    SecurityFilter securityFilter;
     
-   @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(cors -> cors.configurationSource(request -> {
-            var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-            corsConfig.setAllowedOrigins(List.of("https://mangahub.up.railway.app"));
-            corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-            corsConfig.setAllowedHeaders(List.of("*"));
-            corsConfig.setAllowCredentials(true);
-            return corsConfig;
-        }))
-        .csrf(csrf -> csrf.disable())
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        return httpSecurity
+        .csrf(csfr -> csfr.disable()) 
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(HttpMethod.GET, "/**").permitAll()
@@ -46,11 +37,9 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "/product/{id}").permitAll()
             .requestMatchers(HttpMethod.GET, "/product/{search}").permitAll()
             .anyRequest().authenticated()
-        )
-        .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-    }
+        )   .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+        .build();  
+    } 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
