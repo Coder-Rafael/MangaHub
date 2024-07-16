@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       actFigure: "Action Figure",
     }
     
-      fetch("https://mangahub-production.up.railway.app/home/")
+      fetch("https://mangahub.up.railway.app/home/")
         .then(response => response.json())
         .then(data => {
             productsLast = data;
