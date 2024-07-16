@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     const tipo = {
       manga: "Mangá",
-      lightNovel: "Ligh Novel",
+      lightNovel: "Light Novel",
       actFigure: "Action Figure",
     }
     
