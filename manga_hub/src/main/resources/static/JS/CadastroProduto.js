@@ -32,7 +32,7 @@ function cadastrarp(){
         imagem: imagem
     };
     
-    fetch("https://mangahub-production.up.railway.app/product/register", {
+    fetch("https://mangahub.up.railway.app/product/register", {
         method: "POST",
         
         headers:{

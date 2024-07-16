@@ -8,7 +8,7 @@ document.forms["login"].addEventListener('submit', function(event) {
     const senha = document.forms["login"]["password"].value;
   
     //requisição usando fetch:
-    fetch("https://mangahub-production.up.railway.app/auth/login", {
+    fetch("https://mangahub.up.railway.app/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
